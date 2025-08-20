@@ -80,8 +80,8 @@ class BulkWhatsAppMessage(Document):
         if recipient.get("recipient_data"):
             try:
                 variables = json.loads(recipient.get("recipient_data", "{}"))
-                # for var_name, var_value in variables.items():
-                #     message_content = message_content.replace(f"{{{{{var_name}}}}}", str(var_value))
+                for var_name, var_value in variables.items():
+                    message_content = message_content.replace(f"{{{{{var_name}}}}}", str(var_value))
             except Exception as e:
                 frappe.log_error(f"Error parsing recipient data: {str(e)}", "WhatsApp Bulk Messaging")
         
